@@ -17,6 +17,15 @@ dependencies {
     compile "org.springframework:spring-core:$springVersion"
     compile "org.springframework:spring-context:$springVersion"
     compile "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+    compile "org.springframework:spring-test:$springVersion"
+
+
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpaVersion"
     compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+
+    compile group: 'postgresql', name: 'postgresql', version: '9.3-1102.jdbc41'
+    compile group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '8.5.9'
+
+
+
 }
