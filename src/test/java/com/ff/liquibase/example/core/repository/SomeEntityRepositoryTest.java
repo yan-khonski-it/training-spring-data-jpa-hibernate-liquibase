@@ -5,9 +5,12 @@ import com.ff.liquibase.example.core.entity.SomeEntity;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+@Sql({"classpath:init.sql"})
+@Sql(scripts = "classpath:clean.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class SomeEntityRepositoryTest extends BaseTest {
 
     @Autowired

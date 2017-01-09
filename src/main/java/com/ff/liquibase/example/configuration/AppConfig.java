@@ -6,20 +6,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 
 @Configuration
 @ComponentScan({"com.ff.liquibase.example"})
+@EnableJpaRepositories("com.ff.liquibase.example.core.repository")
 @Import({RepositoryConfig.class})
 public class AppConfig {
 
-    private static final String APPLICATION_PROPERTIES_PATH = "application.properties";
-
-    //<context:property-placeholder location="classpath:application.properties" />
     @Bean
-    public PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-        PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-        ppc.setLocation(new ClassPathResource(APPLICATION_PROPERTIES_PATH));
-        ppc.setIgnoreUnresolvablePlaceholders(true);
-        return ppc;
+    public JpaTransactionManager transactionManager() {
+        return new JpaTransactionManager();
     }
 }
