@@ -1,14 +1,14 @@
 package com.ff.liquibase.example.configuration;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.CommonDataSource;
 import javax.sql.DataSource;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -20,6 +20,8 @@ public class RepositoryConfig {
 
     private static final String HIBERNATE_PROPERTIES_RESOURCE = "hibernate.properties";
     private static final Properties HIBERNATE_PROPERTIES = readProperties();
+    private static final String DEFAULT_SCHEMA = "public";
+    private static final String LIQUIBASE_CHANGE_LOG = "classpath:liquibase/db.changelog-main.xml";
 
     @Value("${jdbc.url}")
     private String url;
@@ -64,6 +66,7 @@ public class RepositoryConfig {
     }
 
     @Bean
+    @DependsOn("liquibase")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(dataSource());
@@ -71,5 +74,14 @@ public class RepositoryConfig {
         lef.setPackagesToScan("com.ff.liquibase.example.core.entity");
         lef.setJpaProperties(HIBERNATE_PROPERTIES);
         return lef;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setDataSource(dataSource());
+        liquibase.setDefaultSchema(DEFAULT_SCHEMA);
+        liquibase.setChangeLog(LIQUIBASE_CHANGE_LOG);
+        return liquibase;
     }
 }

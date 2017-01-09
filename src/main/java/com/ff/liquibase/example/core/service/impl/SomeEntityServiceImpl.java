@@ -6,9 +6,10 @@ import com.ff.liquibase.example.core.service.SomeEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Service
+@Service(value = "someEntityService")
 public class SomeEntityServiceImpl implements SomeEntityService {
 
     private SomeEntityRepository someEntityRepository;

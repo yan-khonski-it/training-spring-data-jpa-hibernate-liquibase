@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet author="Yan.Khonski" id="1">
+        <createSequence sequenceName="SOME_ENTITY_ID_SEQ" incrementBy="1" startValue="1"/>
+        <createTable tableName="SOME_ENTITY">
+            <column name="ID" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEXT" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey columnNames="ID" constraintName="SOME_ENTITY_ID" tableName="SOME_ENTITY"/>
+     </changeSet>
+
+</databaseChangeLog>

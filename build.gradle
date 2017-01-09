@@ -28,4 +28,5 @@ dependencies {
     compile "postgresql:postgresql:$postgresqlVersion"
     compile "org.apache.tomcat:tomcat-jdbc:$tomcateJdbcVersion"
 
+    compile "org.liquibase:liquibase-core:$liquibaseVersion"
 }
