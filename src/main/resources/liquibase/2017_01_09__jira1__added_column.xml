@@ -5,4 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
 
+    <changeSet author="Yan.Khonski" id="2">
+        <addColumn
+                   schemaName="public"
+                   tableName="SOME_ENTITY">
+            <column name="CODE" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

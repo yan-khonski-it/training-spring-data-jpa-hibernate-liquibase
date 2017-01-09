@@ -27,4 +27,7 @@ public class SomeEntity {
 
     @Column(name = "created")
     private LocalDateTime created;
+
+    @Column(name = "code")
+    private Integer code;
 }

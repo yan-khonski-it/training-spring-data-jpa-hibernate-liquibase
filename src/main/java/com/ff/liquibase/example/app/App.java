@@ -17,12 +17,6 @@ public class App {
         ApplicationContext ctx =
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
-        String[] beanNames = ctx.getBeanDefinitionNames();
-        Arrays.sort(beanNames);
-        for (String beanName : beanNames) {
-            System.out.println(beanName);
-        }
-
         SomeEntityService service = (SomeEntityService) ctx.getBean("someEntityService");
 
         SomeEntity s1 = new SomeEntity();

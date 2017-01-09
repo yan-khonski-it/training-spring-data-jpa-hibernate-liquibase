@@ -6,4 +6,5 @@
             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
 
     <include file="/liquibase/db.schema.xml"/>
+    <include file="/liquibase/2017_01_09__jira1__added_column.xml"/>
 </databaseChangeLog>
